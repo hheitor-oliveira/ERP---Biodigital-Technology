@@ -93,6 +93,4 @@ Toda Movimentação contêm um Usuário
 - Um usuário pode estar atrelado a um ou várias movimentações.
 ## Regras de Negócio
 
-⚠️ Esta seção será refinada durante o desenvolvimento da V1.0.
-
-As regras de negócio serão documentadas conforme cada funcionalidade for implementada, garantindo que representem corretamente o comportamento do domínio.
+- Toda venda só poderá ser concluída, se caso, o total da venda for igual ao total do pagamento.
