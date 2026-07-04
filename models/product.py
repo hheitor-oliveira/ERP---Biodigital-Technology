@@ -7,10 +7,10 @@ class Product:
                  value: float,
                  buy_price: float
                  ):
-        self.product_id = id
-        self.product_name = name
-        self.product_category = category
-        self.product_quantity = quantity
-        self.product_value = value
+        self.id = id
+        self.name = name
+        self.category = category
+        self.quantity = quantity
+        self.value = value
         self.buy_price = buy_price
         

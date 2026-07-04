@@ -6,6 +6,6 @@ class MovementItem:
                product: Product,
                quantity: int
                ):
-    self.movement_item_id = id
+    self.id = id
     self.product = product
     self.quantity = quantity

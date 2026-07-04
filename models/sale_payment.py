@@ -1,8 +1,10 @@
-class PaymentItem:
+from payment_method import PaymentMethod
+
+class SalePayment:
     def __init__(self,
                  id: int,
-                 payment_method: str,
+                 payment_method: PaymentMethod,
                  value: float):
-        self.payment_id = id
+        self.id = id
         self.payment_method = payment_method
         self.value = value
