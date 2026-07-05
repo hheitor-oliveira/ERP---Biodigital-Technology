@@ -18,3 +18,4 @@ class Sale:
         self.total_value = total_value
         self.discount = discount
         self.date = date
+        
