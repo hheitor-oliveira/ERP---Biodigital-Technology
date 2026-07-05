@@ -1,32 +1,39 @@
-### **Entidades e Atributos**
+### Entitys and Attributes
 
-**V1.0 - Sistema Atual**
+**V1.0 - Atual System
 
-- **Produto**
-	id_produto
-	nome_produto
-	quantidade_produto
-	categoria_produto
-	valor_de_compra
-	preço_de_venda
+- **Product**
+	product_id
+	product_name
+	stock_quantity
+	product_category
+	cost_price
+	sale_price
 
-- **Venda**
-	id_venda
-	id_Item_venda
-	id_forma_pagamento
-	usuário_responsável
-	data_venda
-	valor_total
+- **Sale**
+	sale_id
+	sale_item_id
+	sale_payment_id
+	user_id
+	sell_date
+	total_value
 
-	- **Item_Venda**
-		id_item_venda
-		produto
-		quantidade
-		valor_unitário
-	- **Forma_Pagamento**
-		id_forma_pagamento
-		método
-		valor
+	- **Sale_Item**
+		sale_item_id
+		product_id
+		quantity
+		unitary_value
+		
+	- **Sale_Payment**
+		sale_payment_id
+		sale_id
+		payment_method_id
+		value
+
+- **Payment_Method**
+		payment_method_id
+		payment_method_name
+		payment_method_is_active
 
 - **Movimentação**
 	id_movimentação
@@ -66,13 +73,13 @@
 
 ### Relacionamentos
 
-**Toda Venda contêm Item_Venda
+**Toda Venda contêm Pagamento
 - Toda venda pode ter um ou vários Item_Venda.
 - Todo Item_Venda só pode estar atrelado no máximo a uma Venda
 
-**Toda Venda contêm Forma de Pagamento**
-- Toda venda pode ter uma ou várias formas de pagamento.
-- Toda forma_de_pagamento pode estar atrelado no máximo a uma venda
+**Todo Pagamento contêm Método de Pagamento
+- Todo pagamento pode ter uma ou várias formas de pagamento.
+- Toda forma de pagamento pode estar atrelado a um e vários pagamentos.
 
 **Toda Venda gera Movimentação**
 - Toda venda pode gerar uma ou várias movimentações.
@@ -80,9 +87,6 @@
 
 **Toda Venda contêm Usuário**
 - Toda venda possui no máximo um Usuário responsável.
-
-**Todo Item_Venda está em uma Venda**
-- Um Item_Venda pode estar atrelado no máximo a uma venda.
 
 **Toda Movimentação contêm um Item_Movimentação**
 - Uma movimentação pode ter um ou vários Item_Movimentação.
@@ -93,4 +97,4 @@ Toda Movimentação contêm um Usuário
 - Um usuário pode estar atrelado a um ou várias movimentações.
 ## Regras de Negócio
 
-- Toda venda só poderá ser concluída, se caso, o total da venda for igual ao total do pagamento.
+Entender como modelar.
