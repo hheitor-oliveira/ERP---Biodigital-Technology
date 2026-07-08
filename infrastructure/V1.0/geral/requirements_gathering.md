@@ -19,16 +19,12 @@
 			- Gerar Lista de Compras em PDF
 
 		**Vendas**
-			- Registrar Venda
-			- Consultar Venda
+			- Registrar Vendas
+			- Consultar Vendas
 			- Listar todas as vendas
-			(analisar painel e dar continuidade aqui)
-
-		**Permissões**
-		- Atendimento: Poderá realizar ações em todo o módulo do estoque e vendas.
-		- Técnico: Poderá realizar ações de retirada manual do estoque
-		- Administrador: Poderá realizar qualquer ação.
-
+			- Imprimir extrato de caixa diário
+			- Aplicar desconto por valor
+			- Aplicar desconto por porcentagem
 ---
 
 - #### **Requisitos não funcionais.**
@@ -43,14 +39,14 @@
 	RNGV01 - Uma venda só poderá ser concluída quando o total dos pagamentos for igual ao valor total da venda.
 	RNGV02 - Uma venda deverá ser cancelada caso o estoque não permitir a retirada de um produto.
 	RNGV03 - Qualquer produto adicionado a uma venda vira com 1 por padrão.
-	RNGV04 - Os descontos dados serão em dinheiro, não em porcentagem.
-	RNGV05 - Analisar mais...
+	RNGV04 - Uma venda é iniciada quando é adicionado um produto.
+	RNGV05 - Os descontos serão aplicados na venda inteira, não em produtos individualmente.
 
 	**Estoque**
 	RNGE01 - Uma movimentação deve ser barrada sempre que a quantidade requisitada não estiver disponível.
 	RNGE02 - A quantidade de um produto nunca pode ser negativa.
 	RNGE03 - Saídas manuais devem ser registradas o motivo.
-	RNGE04 - Analisar mais
+	RNGE04 - Os produtos não podem ser excluídos para haver persistência no sistema. Neste caso, apenas desativá-los.
 
 ---
 
