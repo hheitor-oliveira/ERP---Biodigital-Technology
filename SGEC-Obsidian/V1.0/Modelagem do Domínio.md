@@ -12,10 +12,8 @@
 
 - **Sale**
 	sale_id
-	sale_item_id
-	sale_payment_id
 	user_id
-	sell_date
+	sale_date
 	total_value
 
 	- **Sale_Item**

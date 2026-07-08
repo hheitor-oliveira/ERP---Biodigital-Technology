@@ -17,7 +17,7 @@ discount
 SALE_PAYMENT
 -------------------
 payment_item_id (PK)
-sell_id (FK)
+sale_id (FK)
 payment_method_id (FK)
 value
 
