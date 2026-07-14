@@ -47,5 +47,3 @@ class Terminal:
     @staticmethod
     def ask_int(message: str) -> int:
         return int(input(f"{message}: "))
-
-terminal = Terminal

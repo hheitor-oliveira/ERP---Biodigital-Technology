@@ -54,3 +54,27 @@ class Product:
     def change_category(self,
                         new_category: Category):
         self._category = new_category
+        
+    @property
+    def name(self) -> str:
+        return self._name
+    
+    @property
+    def category(self) -> Category:
+        return self._category
+    
+    @property
+    def cost_price(self) -> Decimal:
+        return self._cost_price
+    
+    @property
+    def sale_value(self) -> Decimal:
+        return self._sale_value
+    
+    @property
+    def stock_quantity(self) -> int:
+        return self._stock_quantity
+    
+    @property
+    def status(self) -> ProductStatus:
+        return self._status
