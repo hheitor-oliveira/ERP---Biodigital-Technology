@@ -66,7 +66,9 @@ class CreateMenu:
         name = Terminal.ask('Nome')
 
       elif option == 2:
-        pass
+        categories = (self._category_service.list_category())
+        for x, category in enumerate(categories, start=1):
+          print(f'{x} - {category.category_name}')
         
       elif option == 3:
         cost_price = Terminal.ask_decimal('Preço de custo')

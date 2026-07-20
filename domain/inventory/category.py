@@ -3,13 +3,17 @@ from typing import Self
 class Category:
   def __init__(self,
                name: str,
-               category_id: None | int = None):
-    self._id = category_id
+               id: None | int = None):
+    self._id = id
     self._name = name
     
   @property
   def category_name(self) -> str:
     return self._name
+  
+  @property
+  def category_id(self) -> None | int:
+    return self._id
   
   @classmethod
   def restore(cls,

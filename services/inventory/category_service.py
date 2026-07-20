@@ -13,4 +13,9 @@ class CategoryService:
     self._category_repository.save(category)
     
     return category
+  
+  def list_category(self):
     
+    categories = self._category_repository.reconstruct()
+    
+    return categories
