@@ -8,11 +8,11 @@ class Category:
     self._name = name
     
   @property
-  def category_name(self) -> str:
+  def name(self) -> str:
     return self._name
   
   @property
-  def category_id(self) -> None | int:
+  def id(self) -> None | int:
     return self._id
   
   @classmethod

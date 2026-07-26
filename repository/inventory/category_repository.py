@@ -21,7 +21,7 @@ class CategoryRepository:
         VALUES (%s)
         ''',
         (
-          category.category_name,
+          category.name,
         )
       )
       
@@ -50,10 +50,10 @@ class CategoryRepository:
       categories: list[Category] = []
       
       for row in rows:
-        category_id = row[0]
-        category_name = row[1]
+        id = row[0]
+        name = row[1]
         
-        category = Category.restore(category_name, category_id)
+        category = Category.restore(name, id)
         categories.append(category)
       
       return categories

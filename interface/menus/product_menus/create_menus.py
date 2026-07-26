@@ -1,6 +1,7 @@
 # internal import's
 from interface.terminal import Terminal
 from services.inventory.category_service import CategoryService
+from decimal import InvalidOperation
 
 class CreateMenu:
   
@@ -51,10 +52,10 @@ class CreateMenu:
 
       Terminal.header('Cadastro de Produto - SGEC')
       
-      print('1 - Nome:', name) if name else print('1 - Nome: Não informado')
-      print('2 - Categoria:', selected_category.value) if selected_category else print('2 - Categoria: Não selecionado')
-      print('3 - Preço de custo:', cost_price) if cost_price else print('3 - Preço de custo: Não informado')
-      print('4 - Valor de venda:', sale_value) if sale_value else print('4 - Valor de venda: Não informado')
+      print('1 - Nome:', name.capitalize()) if name else print('1 - Nome: Não informado')
+      print('2 - Categoria:', selected_category.name.capitalize()) if selected_category else print('2 - Categoria: Não selecionado')
+      print(f'3 - Preço de custo:, {cost_price:,.2f}') if cost_price else print('3 - Preço de custo: Não informado')
+      print(f'4 - Valor de venda:, {sale_value:,.2f}') if sale_value else print('4 - Valor de venda: Não informado')
       Terminal.separator()
       print('5 - Finalizar cadastro')
 
@@ -63,18 +64,37 @@ class CreateMenu:
       option = Terminal.ask_int('Escolha um campo')
 
       if option == 1:
-        name = Terminal.ask('Nome')
+        name_validation = Terminal.ask('Nome')
+        if name_validation.isalpha() == False or 2 < len(name_validation) < 64:
+          Terminal.error('Valor inválido inserido. O nome só pode conter letras')
+        else:
+          name = name_validation
 
       elif option == 2:
+        Terminal.clear()
         categories = (self._category_service.list_category())
+        Terminal.header('Lista de Categorias | ERP-Biodigital')
         for x, category in enumerate(categories, start=1):
-          print(f'{x} - {category.category_name}')
+          print(f'{x} - {category.name}')
+        Terminal.separator()
+        try:
+          category = Terminal.ask_int('Digite o número correspondente')
+          selected_category = categories[category - 1]
+        except ValueError or IndexError:
+          print('Entrada inválida. Insira uma entrada válida e tente novamente!')
+          continue
         
       elif option == 3:
-        cost_price = Terminal.ask_decimal('Preço de custo')
-
+        try:
+          cost_price = Terminal.ask('Preço de custo')
+        except InvalidOperation:
+          Terminal.error('Entrada inválida. Digite apenas números nesse campo.')
+          
       elif option == 4:
-        sale_value = Terminal.ask_decimal('Preço de Venda')
+        try:
+          sale_value = Terminal.ask('Valor de venda')
+        except InvalidOperation:
+          Terminal.error('Entrada inválida. Digite apenas números nesse campo.')
       
       elif option == 5:
         pass

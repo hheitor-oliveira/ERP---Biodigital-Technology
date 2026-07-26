@@ -5,7 +5,6 @@ from interface.terminal import Terminal
 from interface.menus.product_menus.create_menus import CreateMenu
 
 # internal import's
-from domain.inventory.category import Category
 
 class InventoryMenu:
   
