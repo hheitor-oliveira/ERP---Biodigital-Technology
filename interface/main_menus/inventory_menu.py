@@ -2,7 +2,7 @@
 
 # interface import's
 from interface.terminal import Terminal
-from interface.menus.product_menus.create_menus import CreateMenu
+from interface.menus.create_menus import CreateMenu
 
 # internal import's
 

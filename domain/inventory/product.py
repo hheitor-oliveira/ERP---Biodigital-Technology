@@ -9,13 +9,6 @@ from domain.exceptions.product_exceptions import InvalidStockQuantityError
 class Product:
     """
     A classe responsável por representar um produto do sistema e realizar operações relacionadas ao produto:
-    add_stock()
-    remove_stock()
-    change_name()
-    change_status()
-    change_category()
-    change_sale_price()
-    change_cost_price()
     """
     def __init__(self,
                  name: str,

@@ -1,12 +1,14 @@
 # internal import's
 from interface.terminal import Terminal
 from services.inventory.category_service import CategoryService
+from services.inventory.product_service import ProductService
 from decimal import InvalidOperation
 
 class CreateMenu:
   
   def __init__(self) -> None:
     self._category_service = CategoryService()
+    self._product_service = ProductService()
     
      
   def main_create_menu(self):
@@ -52,23 +54,26 @@ class CreateMenu:
 
       Terminal.header('Cadastro de Produto - SGEC')
       
-      print('1 - Nome:', name.capitalize()) if name else print('1 - Nome: Não informado')
-      print('2 - Categoria:', selected_category.name.capitalize()) if selected_category else print('2 - Categoria: Não selecionado')
-      print(f'3 - Preço de custo:, {cost_price:,.2f}') if cost_price else print('3 - Preço de custo: Não informado')
-      print(f'4 - Valor de venda:, {sale_value:,.2f}') if sale_value else print('4 - Valor de venda: Não informado')
+      print(f'1 - Nome: {name.title()}') if name is not None else print('1 - Nome: Não informado')
+      print(f'2 - Categoria: {selected_category.name.capitalize()}') if selected_category is not None else print('2 - Categoria: Não selecionado')
+      print(f'3 - Preço de custo: R${cost_price:,.2f}') if cost_price is not None else print('3 - Preço de custo: Não informado')
+      print(f'4 - Valor de venda: R${sale_value:,.2f}') if sale_value is not None else print('4 - Valor de venda: Não informado')
       Terminal.separator()
-      print('5 - Finalizar cadastro')
+      print('5 - Cadastrar Produto')
 
       Terminal.separator()
 
       option = Terminal.ask_int('Escolha um campo')
 
       if option == 1:
-        name_validation = Terminal.ask('Nome')
-        if name_validation.isalpha() == False or 2 < len(name_validation) < 64:
-          Terminal.error('Valor inválido inserido. O nome só pode conter letras')
+        name_entry = Terminal.ask('Nome')
+        name_validation = name_entry
+        name_validation = name_validation.replace(' ','')
+        if name_validation.isalnum() == False or len(name_validation) <= 2 or len(name_validation) >= 64:
+          Terminal.error('O nome só pode conter entre 2 e 64 caracteres.')
+          Terminal.pause()
         else:
-          name = name_validation
+          name = name_entry
 
       elif option == 2:
         Terminal.clear()
@@ -86,18 +91,31 @@ class CreateMenu:
         
       elif option == 3:
         try:
-          cost_price = Terminal.ask('Preço de custo')
+          cost_price = Terminal.ask_decimal('Preço de custo')
         except InvalidOperation:
           Terminal.error('Entrada inválida. Digite apenas números nesse campo.')
           
       elif option == 4:
         try:
-          sale_value = Terminal.ask('Valor de venda')
+          sale_value = Terminal.ask_decimal('Valor de venda')
         except InvalidOperation:
           Terminal.error('Entrada inválida. Digite apenas números nesse campo.')
       
       elif option == 5:
-        pass
+        if name is not None and selected_category is not None and cost_price is not None and sale_value is not None:
+          self._product_service.create_product(name, selected_category, cost_price, sale_value)
+          Terminal.success('Produto cadastrado com sucesso!')
+          Terminal.pause()
+          Terminal.clear()
+          break
+        else:
+          Terminal.error('Ainda existem campos vazios, preencha todos para criar.')
+          Terminal.pause()
+          Terminal.clear()
+          continue
+
+      elif option == 6:
+        break
             
   def create_category_screen(self) -> None:
     
@@ -106,8 +124,8 @@ class CreateMenu:
     while True:
 
       Terminal.header('Criação de Categoria | ERP-Biodigital')
-      print(f'1 - Nome: {name.capitalize()}') if name is not None else print('1 - Nome: Não digitado')
-      print(f'2 - Criar')
+      print(f'1 - Nome: {name.title()}') if name is not None else print('1 - Nome: Não digitado')
+      print(f'2 - Cadastrar Categoria')
       print(f'3 - Cancelar')
       Terminal.separator()
       
@@ -116,7 +134,8 @@ class CreateMenu:
       try:
         if option == 1:
           name_entry = Terminal.ask('Nome')
-          if name_entry.isalpha() == False or len(name_entry) < 2 or len(name_entry) > 32:
+          name_validation = name_entry.replace(' ','').strip('')
+          if name_validation.isalpha() == False or len(name_validation) < 2 or len(name_validation) > 32:
             Terminal.error('O nome da categoria só pode conter letras.)')
             print('(2 - 32 caracteres.)')
             Terminal.pause()

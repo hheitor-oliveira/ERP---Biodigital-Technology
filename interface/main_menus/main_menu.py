@@ -1,5 +1,5 @@
 from interface.terminal import Terminal
-from interface.menus.product_menus.inventory_menu import InventoryMenu
+from interface.main_menus.inventory_menu import InventoryMenu
 
 class MainMenu:
 

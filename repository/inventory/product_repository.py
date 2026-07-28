@@ -2,7 +2,6 @@
 from database.connection import DatabaseConnection
 from domain.inventory.product import Product
 
-
 class ProductRepository:
     '''Reponsável por coordenar os processos de persistência da classe Product.'''
     def save(self, product: Product) -> None:
@@ -16,19 +15,21 @@ class ProductRepository:
                 """
                 INSERT INTO product (
                     product_name,
-                    product_category,
+                    category_id,
                     cost_price,
-                    sale_price
+                    sale_value
                 )
                 VALUES (%s, %s, %s, %s)
-                """,
+                """,    
                 (
                     product.name,
-                    product.category,
+                    product.category.id,
                     product.cost_price,
                     product.sale_value
                 )
             )
+    
+            connection.commit()
     
         finally:
             connection.close()
