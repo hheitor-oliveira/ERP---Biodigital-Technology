@@ -24,5 +24,8 @@ class ProductService:
     
     return product
   
-  def entry_product(self, product: Product) -> None:
-     pass
+  def list_products(self) -> list[Product]:
+     
+     products = self._product_repository.reconstruct()
+     
+     return products

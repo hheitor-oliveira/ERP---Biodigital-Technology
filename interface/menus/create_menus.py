@@ -60,6 +60,7 @@ class CreateMenu:
       print(f'4 - Valor de venda: R${sale_value:,.2f}') if sale_value is not None else print('4 - Valor de venda: Não informado')
       Terminal.separator()
       print('5 - Cadastrar Produto')
+      print('6 - Cancelar Cadastro')
 
       Terminal.separator()
 

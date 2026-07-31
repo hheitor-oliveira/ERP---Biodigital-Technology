@@ -3,6 +3,7 @@
 # interface import's
 from interface.terminal import Terminal
 from interface.menus.create_menus import CreateMenu
+from interface.menus.consult_menu import ConsultMenu
 
 # internal import's
 
@@ -10,7 +11,7 @@ class InventoryMenu:
   
   def __init__(self):
     self.create_menus = CreateMenu()
-    pass
+    self.consult_menus = ConsultMenu()
   
   def run(self):
     
@@ -32,9 +33,7 @@ class InventoryMenu:
         self.create_menus.main_create_menu()
         
       elif user_choice == 2:
-        print('Funcionalidade em desenvolvimento.')
-        Terminal.pause()
-        continue
+        self.consult_menus.run()
       
       elif user_choice == 3:
         continue

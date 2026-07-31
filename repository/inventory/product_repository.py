@@ -1,6 +1,7 @@
 # internal's import's
 from database.connection import DatabaseConnection
 from domain.inventory.product import Product
+from domain.inventory.category import Category
 
 class ProductRepository:
     '''Reponsável por coordenar os processos de persistência da classe Product.'''
@@ -35,5 +36,57 @@ class ProductRepository:
             connection.close()
             
             
-    def reconstruct(self, product: Product):
-        pass
+    def reconstruct(self):
+        
+        connection = DatabaseConnection.get_connection()
+        
+        try:
+            cursor = connection.cursor()
+            
+            cursor.execute(
+                """
+                SELECT
+                    product.product_id,
+                    product.product_name,
+                    product.cost_price,
+                    product.sale_value,
+                    product.stock_quantity,
+                    product.product_status,
+                    category.category_name,
+                    category.category_id
+                    
+                FROM PRODUCT
+                JOIN CATEGORY
+                ON product.category_id = category.category_id;
+                """
+            )
+        
+            rows = list(cursor.fetchall())
+            products: list[Product] = []
+            
+            for row in rows:
+                product_id = row[0]
+                product_name = row[1]
+                product_cost_price = row[2]
+                product_sale_value = row[3]
+                product_stock_quantity = row[4]
+                product_status = row[5]
+                category_id = row[6]
+                category_name = row[7]
+                
+                category = Category.restore(category_id, category_name)
+                
+                product = Product.restore(product_id, 
+                                          product_name, 
+                                          category,
+                                          product_stock_quantity, 
+                                          product_sale_value, 
+                                          product_cost_price, 
+                                          product_status)
+                
+                products.append(product)
+                
+            return products
+        
+        finally:
+            connection.close()

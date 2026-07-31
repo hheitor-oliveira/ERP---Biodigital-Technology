@@ -36,9 +36,18 @@ class Product:
                 stock_quantity: int,
                 sale_value: Decimal,
                 cost_price: Decimal,
-                self_status: ProductStatus) -> object:
+                status: str):
         
         product = object.__new__(cls)
+        
+        product._id = id
+        product._name = name
+        product._category = category
+        product._stock_quantity = stock_quantity
+        product._sale_value = sale_value
+        product._cost_price = cost_price
+        product._status = status
+        
         return product
 
     @property
