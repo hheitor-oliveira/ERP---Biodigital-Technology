@@ -1,4 +1,4 @@
-# Class: Sale
+# Entity: Sale
 
 ### **Responsibility's**
 

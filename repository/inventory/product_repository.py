@@ -34,8 +34,7 @@ class ProductRepository:
     
         finally:
             connection.close()
-            
-            
+                  
     def reconstruct(self):
         
         connection = DatabaseConnection.get_connection()

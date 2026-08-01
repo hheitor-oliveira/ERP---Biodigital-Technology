@@ -38,7 +38,7 @@
  - product_name
  - cost_price
  - sale_price
- - product_category
+ - category_id (FK)
  - stock_quantity
  - product_status
 

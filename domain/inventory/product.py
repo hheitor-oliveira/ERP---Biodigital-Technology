@@ -105,3 +105,4 @@ class Product:
     def change_category(self,
                         new_category: Category):
         self._category = new_category
+        

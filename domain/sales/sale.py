@@ -28,4 +28,3 @@ class Sale:
         self._discount_type = discount_type
         self._discount_value = discount_value
         self._sale_date = sale_date
-        

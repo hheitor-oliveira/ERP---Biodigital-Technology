@@ -18,6 +18,7 @@ class Movement:
                  movement_type: MovementType,
                  movement_date: datetime
                  ):
+    
         self._movement_id = id
         self._items = items
         self._user = user
