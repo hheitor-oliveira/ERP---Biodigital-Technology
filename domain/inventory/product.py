@@ -74,6 +74,10 @@ class Product:
     def status(self) -> ProductStatus:
         return self._status
 
+    @property
+    def id(self) -> int | None:
+        return self._id
+
     def add_stock(self, quantity: int) -> None:
         if quantity <= 0:
             raise InvalidStockQuantityError(

@@ -1,12 +1,14 @@
 from interface.core.terminal import Terminal
 from interface.modules.inventory.consult_menu import ConsultMenu
 from interface.modules.inventory.create_menu import CreateMenu
+from interface.modules.inventory.edit_menu import EditMenu
 
 
 class InventoryMenu:
     def __init__(self):
         self.create_menus = CreateMenu()
         self.consult_menus = ConsultMenu()
+        self.edit_menus = EditMenu()
 
     def run(self):
         while True:
@@ -29,8 +31,7 @@ class InventoryMenu:
             elif user_choice == 2:
                 self.consult_menus.run()
             elif user_choice == 3:
-                Terminal.warning("Edições em desenvolvimento.")
-                Terminal.pause()
+                self.edit_menus.run()
             elif user_choice == 4:
                 Terminal.warning("Entrada/Saída em desenvolvimento.")
                 Terminal.pause()

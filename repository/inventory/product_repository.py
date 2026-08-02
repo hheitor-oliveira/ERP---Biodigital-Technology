@@ -56,7 +56,8 @@ class ProductRepository:
                     
                 FROM PRODUCT
                 JOIN CATEGORY
-                ON product.category_id = category.category_id;
+                ON product.category_id = category.category_id
+                ORDER BY product_id;
                 """
             )
         
@@ -89,3 +90,38 @@ class ProductRepository:
         
         finally:
             connection.close()
+            
+    def save_a_edit(self, product: Product, product_id: int) -> None:
+
+            connection = DatabaseConnection.get_connection()
+
+            try:
+                cursor = connection.cursor()
+
+                cursor.execute(
+                    """
+                    UPDATE product
+                    SET
+                        product_name = %s,
+                        category_id = %s,
+                        cost_price = %s,
+                        sale_value = %s,
+                        stock_quantity = %s,
+                        product_status = %s
+                    WHERE product_id = %s  
+                    """,
+                    (
+                        product.name,
+                        product.category.id,
+                        product.cost_price,
+                        product.sale_value,
+                        product.stock_quantity,
+                        product.status,
+                        product_id
+                    )
+                )
+        
+                connection.commit()
+        
+            finally:
+                connection.close()

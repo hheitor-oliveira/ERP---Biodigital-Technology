@@ -17,6 +17,9 @@
   - Tipo de Relacionamento: Associação
   - -> Representa o produto dentro de uma um item da movimentação.
 
+##### Category
+  - Tipo de Relacionamento: Composição
+  - -> Representa uma categoria que componhe o produto.
 ---
 ### **Attribute's**
 
