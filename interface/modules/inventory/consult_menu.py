@@ -21,14 +21,14 @@ class ConsultMenu:
             option = Terminal.ask_option("Digite a opção desejada", range(1, 4))
 
             if option == 1:
-                self._list_products()
+                self._product_stock()
             elif option == 2:
                 Terminal.warning("Consulta de categorias em desenvolvimento.")
                 Terminal.pause()
             elif option == 3:
                 break
 
-    def _list_products(self) -> None:
+    def _product_stock(self) -> None:
         products = self._product_service.list_products()
         rows = []
 
