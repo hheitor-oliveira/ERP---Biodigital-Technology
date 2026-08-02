@@ -22,7 +22,7 @@
 
   - (+) id: int
   - (+) name: str
-  - (+) category: str
+  - (+) category: Category
   - (#) stock_quantity: int
   - (#) sale_value: Decimal
   - (#) cost_price: Decimal

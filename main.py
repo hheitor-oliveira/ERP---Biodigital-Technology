@@ -1,4 +1,4 @@
-from interface.main_menus.main_menu import MainMenu
+from interface.modules.main_menu import MainMenu
 
 def main():
     menu = MainMenu()
