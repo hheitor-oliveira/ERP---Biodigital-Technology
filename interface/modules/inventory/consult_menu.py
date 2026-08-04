@@ -1,10 +1,12 @@
 from interface.core.terminal import Terminal
 from services.inventory.product_service import ProductService
+from services.inventory.category_service import CategoryService
 
 
 class ConsultMenu:
     def __init__(self) -> None:
         self._product_service = ProductService()
+        self._category_service = CategoryService()
 
     def run(self) -> None:
         while True:
@@ -23,8 +25,7 @@ class ConsultMenu:
             if option == 1:
                 self._product_stock()
             elif option == 2:
-                Terminal.warning("Consulta de categorias em desenvolvimento.")
-                Terminal.pause()
+                self._categories_list()
             elif option == 3:
                 break
 
@@ -51,3 +52,24 @@ class ConsultMenu:
         )
         print()
         Terminal.pause()
+
+    def _categories_list(self):
+        categories = self._category_service.list_category()
+        rows = []
+        
+        for category in categories:
+                    rows.append(
+                        [
+                            category.id,
+                            category.name.title()
+                        ]
+                    )
+        
+        Terminal.header('Categorias cadastradas', 'Inventário')
+        Terminal.table(
+            ["ID", "Nome"],
+            rows
+        )
+        print()
+        Terminal.pause()
+        

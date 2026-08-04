@@ -2,6 +2,7 @@ from interface.core.terminal import Terminal
 from interface.modules.inventory.consult_menu import ConsultMenu
 from interface.modules.inventory.create_menu import CreateMenu
 from interface.modules.inventory.edit_menu import EditMenu
+from interface.modules.inventory.movement_menu import MovementMenu
 
 
 class InventoryMenu:
@@ -9,6 +10,7 @@ class InventoryMenu:
         self.create_menus = CreateMenu()
         self.consult_menus = ConsultMenu()
         self.edit_menus = EditMenu()
+        self.movement_menus = MovementMenu()
 
     def run(self):
         while True:
@@ -33,7 +35,6 @@ class InventoryMenu:
             elif user_choice == 3:
                 self.edit_menus.run()
             elif user_choice == 4:
-                Terminal.warning("Entrada/Saída em desenvolvimento.")
-                Terminal.pause()
+                self.movement_menus.run()
             elif user_choice == 5:
                 break
